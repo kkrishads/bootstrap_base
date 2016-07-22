@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$screenname="register";
+$screenname="dashboard";
 include 'header.php';
 ?>
 
@@ -12,14 +12,14 @@ include 'header.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Register
+                            New Registrations
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-fw fa-edit"></i> Register
+                                <i class="fa fa-fw fa-edit"></i> New Registrations
                             </li>
                         </ol>
                     </div>
@@ -34,7 +34,7 @@ include 'header.php';
                         <div class="panel panel-primary">
                             <div class="panel-heading">
 							
-                                <h3 class="panel-title"><a href="new_register.php" class="btn btn-warning">Add New</a></h3>
+                                <h3 class="panel-title"><a href="new_register.php" class="btn btn-success">Add New</a></h3>
                             </div>
                             <div class="panel-body">
 							

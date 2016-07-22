@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-$screenname="register";
+$screenname="dashboard";
 include 'header.php';
 ?>
 
@@ -12,14 +12,14 @@ include 'header.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Register
+                            Total Visitors
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-fw fa-edit"></i> Register
+                                <i class="fa fa-fw fa-edit"></i>  Total Visitors
                             </li>
                         </ol>
                     </div>
@@ -30,34 +30,77 @@ include 'header.php';
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
+				
+				 
+                
+				 <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-							
-                                <h3 class="panel-title"><a href="new_register.php" class="btn btn-warning">Add New</a></h3>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-flag fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">24</div>
+                                        <div>Today - Total Visitors</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="panel-body">
-							
-		<table id="example" class="display" cellspacing="0" width="100%">
-			<thead>
-				<tr>
-				
-<th>Customer Id</th>
-<th>Name</th>
-<th>Date of Birth</th>
-<th>Gender</th>
-<th>Mobile</th>
-<th>Photo</th>
-
-					<th style="background-image: none">Edit</th>
-				</tr>
-			</thead>
-		</table>
-							
-							
-                               
-                            </div>
+                           
                         </div>
+                    </div>
+					
+					<div class="col-lg-3 col-md-6">
+                        <div class="panel panel-yellow">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-flag fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">24</div>
+                                        <div>Today Other Visitors</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+					
+					 <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-flag fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">24</div>
+                                        <div>Today Customer Visitors</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+					
+					<div class="col-lg-3 col-md-6">
+                        <div class="panel panel-red">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-flag fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">24</div>
+                                        <div>Total Visitors</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+				
                     </div>
                 </div>
                 <!-- /.row -->

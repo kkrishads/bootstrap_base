@@ -99,7 +99,38 @@
 				}
 				?>
               
-                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Register</a>
+                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Registration</a>
+                    </li>
+					<?php
+				if($screenname=="expired_registers") {
+					echo '<li class="active">';
+				} else {
+					echo '<li>';
+				}
+				?>
+              
+                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Expired Registrations</a>
+                    </li>
+					
+					<?php
+				if($screenname=="visit_history") {
+					echo '<li class="active">';
+				} else {
+					echo '<li>';
+				}
+				?>
+              
+                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Visit History</a>
+                    </li>
+					<?php
+				if($screenname=="customer_history") {
+					echo '<li class="active">';
+				} else {
+					echo '<li>';
+				}
+				?>
+              
+                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Customer History</a>
                     </li>
                   
                 </ul>

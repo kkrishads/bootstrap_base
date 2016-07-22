@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <?php
-$screenname="register";
+$type="Viewers";
+$screenname="visit_history";
+ if(isset($_GET['type'])) {
+							   if($_GET['type']=="C"){
+								   $type= "Customer";
+								   $screenname="customer_history";
+							   } else {
+								  $type="Viewers";
+								   $screenname="visit_history";
+							   }
+						   }
 include 'header.php';
 ?>
 
@@ -12,14 +22,14 @@ include 'header.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Register
+                           Visitors List - <?php echo $type; ?>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-fw fa-edit"></i> Register
+                                <i class="fa fa-fw fa-edit"></i>  Total Visitors
                             </li>
                         </ol>
                     </div>
@@ -30,26 +40,23 @@ include 'header.php';
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
+				
+				 
+                  <div class="col-lg-12">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">
-							
-                                <h3 class="panel-title"><a href="new_register.php" class="btn btn-warning">Add New</a></h3>
-                            </div>
+                           
                             <div class="panel-body">
 							
 		<table id="example" class="display" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 				
-<th>Customer Id</th>
-<th>Name</th>
-<th>Date of Birth</th>
-<th>Gender</th>
-<th>Mobile</th>
-<th>Photo</th>
 
-					<th style="background-image: none">Edit</th>
+<th>Customer Id</th>
+<th>Date</th>
+<th>Counts</th>
+<th>IP Address</th>
+
 				</tr>
 			</thead>
 		</table>
@@ -58,6 +65,12 @@ include 'header.php';
                                
                             </div>
                         </div>
+                    </div>
+					
+					
+					
+					
+				
                     </div>
                 </div>
                 <!-- /.row -->
@@ -86,7 +99,7 @@ include 'header.php';
 				$('#example').dataTable({
 					"aProcessing": true,
 					"aServerSide": true,
-					"ajax": "datatable.php?ajax"
+					"ajax": "visitor_count.php?ajax"
 				});
 
 				// Save edited row

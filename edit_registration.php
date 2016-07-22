@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <?php
+session_start();
+$custId="123";
+if(isset($_GET['custId']) && $_GET['custId']!=""){
+	$custId=$_GET['custId'];
+}
 $screenname="register";
+include 'config.php';
 include 'header.php';
+$result=mysql_query("select * from cadidate_list where CATEID='$custId'");
+$data=mysql_fetch_array($result);
+if($data['CATEID']==null || $data['CATEID']!=$custId || $data['CATEID']==""){
+	
+} else {
 ?>
 
         <div id="page-wrapper">
@@ -12,7 +23,7 @@ include 'header.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Register
+                            Edit Customer Details
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -20,7 +31,7 @@ include 'header.php';
                             </li>
 							<li><a href="register.php">Register</a></li>
                             <li class="active">
-                                <i class="fa fa-fw fa-edit"></i> New Register
+                                <i class="fa fa-fw fa-edit"></i> Edit Register
                             </li>
                         </ol>
                     </div>
@@ -35,7 +46,7 @@ include 'header.php';
                         <div class="panel panel-primary">
                             <div class="panel-heading">
 							
-                                <h3 class="panel-title">Register</h3>
+                                <h3 class="panel-title">Customer ID: <?php echo $custId; ?></h3>
                             </div>
                             <div class="panel-body">
 							
@@ -45,7 +56,7 @@ include 'header.php';
  <div class="col-lg-6">
    <div class="form-group">
                                 <label>Name*:</label>
-                                <input class="form-control" type="text" name="catname" required/>
+                                <input class="form-control" type="text" name="catname" value="<?php echo $data['CATENAME'];?>" required/>
                   
                             </div>
 							   <div class="form-group">
@@ -264,8 +275,8 @@ include 'header.php';
                             </div>
 							 <div class="form-group">
                                 <label>Customer ID*:</label>
-                                <input class="form-control" type="text" name="custId" required/>
-                  
+                                <input class="form-control" type="text" name="custId" value="<?php echo $custId; ?>" readonly="" required/>
+									
                             </div>
 							 <div class="form-group">
                                 <label>Password*:</label>
@@ -355,11 +366,16 @@ include 'header.php';
                             </div>
 
 
+
    </div>
- 	   <div class="col-lg-12">
    
-    <center>   <input class="btn btn-primary" type="submit" name="submit" value="Save" /></center>
+   <div class="col-lg-12">
+   
+    <center>   <input class="btn btn-primary" type="submit" name="submit" value="Update" /></center>
    </div>
+   
+   
+ 	
 </form>
 							
 							
@@ -383,69 +399,11 @@ include 'header.php';
 
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
-		<script type="text/javascript" language="javascript" class="init">
-			$(document).ready(function() {
-
-				// ATW
-				if ( top.location.href != location.href ) top.location.href = location.href;
-
-				// Initialize datatable
-				$('#example').dataTable({
-					"aProcessing": true,
-					"aServerSide": true,
-					"ajax": "datatable.php?ajax"
-				});
-
-				// Save edited row
-				$("#edit-form").on("submit", function(event) {
-					event.preventDefault();
-					$.post("datatable.php?edit=" + $('#edit-id').val(), $(this).serialize(), function(data) {
-						var obj = $.parseJSON(data);
-						var tr = $('a[data-id="row-' + $('#edit-id').val() + '"]').parent().parent();
-						$('td:eq(1)', tr).html(obj.name);
-						$('td:eq(2)', tr).html(obj.email);
-						$('td:eq(3)', tr).html(obj.mobile);
-						$('#edit-modal').modal('hide');
-					}).fail(function() { alert('Unable to save data, please try again later.'); });
-				});
-
-				// Add new row
-				$("#add-form").on("submit", function(event) {
-					event.preventDefault();
-					$.post("datatable.php?add", $(this).serialize(), function(data) {
-						var obj = $.parseJSON(data);
-						$('#example tbody tr:last').after('<tr role="row"><td class="sorting_1">' + obj.id + '</td><td>' + obj.name + '</td><td>' + obj.email + '</td><td>' + obj.mobile + '</td><td>' + obj.start_date + '</td><td><a data-id="row-' + obj.id + '" href="javascript:editRow(' + obj.id + ');" class="btn btn-default btn-sm">edit</a>&nbsp;<a href="javascript:removeRow(' + obj.id + ');" class="btn btn-default btn-sm">remove</a></td></tr>');
-						$('#add-modal').modal('hide');
-					}).fail(function() { alert('Unable to save data, please try again later.'); });
-				});
-
-			});
-
-			// Edit row
-			function editRow(id) {
-				if ( 'undefined' != typeof id ) {
-					$.getJSON('datatable.php?edit=' + id, function(obj) {
-						$('#edit-id').val(obj.id);
-						$('#firstname').val(obj.name);
-						$('#email').val(obj.email);
-						$('#mobile').val(obj.mobile);
-						$('#edit-modal').modal('show')
-					}).fail(function() { alert('Unable to fetch data, please try again later.') });
-				} else alert('Unknown row id.');
-			}
-
-			// Remove row
-			function removeRow(id) {
-				if ( 'undefined' != typeof id ) {
-					$.get('datatable.php?remove=' + id, function() {
-						$('a[data-id="row-' + id + '"]').parent().parent().remove();
-					}).fail(function() { alert('Unable to fetch data, please try again later.') });
-				} else alert('Unknown row id.');
-			}
-		</script>
 
 
+<?php
+}
+?>
 
 </body>
 
