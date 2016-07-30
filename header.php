@@ -109,7 +109,7 @@
 				}
 				?>
               
-                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Expired Registrations</a>
+                        <a href="expired_list.php"><i class="fa fa-fw fa-edit"></i> Expired Registrations</a>
                     </li>
 					
 					<?php
@@ -120,7 +120,7 @@
 				}
 				?>
               
-                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Visit History</a>
+                        <a href="vistors_view.php?type=C"><i class="fa fa-fw fa-edit"></i>Visit History</a>
                     </li>
 					<?php
 				if($screenname=="customer_history") {
@@ -130,7 +130,7 @@
 				}
 				?>
               
-                        <a href="register.php"><i class="fa fa-fw fa-edit"></i> Customer History</a>
+                        <a href="customer_history.php"><i class="fa fa-fw fa-edit"></i> Customer History</a>
                     </li>
                   
                 </ul>

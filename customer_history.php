@@ -3,16 +3,7 @@
 include 'config.php';
 $type="Customer";
 $request="C";
-$screenname="visit_history";
- if(isset($_GET['type'])) {
-							   if($_GET['type']=="C"){
-								   $type= "Customer";
-								 $request="C";
-							   } else {
-								  $type="Viewers";
-								   $request="O";
-							   }
-						   }
+$screenname="customer_history";
 include 'header.php';
 ?>
 
@@ -24,14 +15,14 @@ include 'header.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                           Visitors History 
+                           Customer History 
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.php">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-fw fa-edit"></i>  Visitors History
+                                <i class="fa fa-fw fa-edit"></i>  Customer History
                             </li>
                         </ol>
                     </div>
@@ -43,11 +34,11 @@ include 'header.php';
         
                 <!-- /.row -->
 				<?php
-				$c_query=mysql_query("Select count(*) as counts from visitor_counts where cust_id!='O'");
-				$c_data=mysql_fetch_array($c_query);
+				$a_query=mysql_query("Select count(Id) as counts from cadidate_list where DISPSTATUS!=0");
+				$a_data=mysql_fetch_array($a_query);
 				
-				$o_query=mysql_query("Select count(*) as counts from visitor_counts where cust_id='O'");
-				$o_data=mysql_fetch_array($o_query);
+				$d_query=mysql_query("Select count(Id) as counts from cadidate_list where DISPSTATUS=0");
+				$d_data=mysql_fetch_array($d_query);
 				?>
 
                 <div class="row">
@@ -60,12 +51,12 @@ include 'header.php';
                                         <i class="fa fa-flag fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $c_data[0];?></div>
-                                        <div>Customer Visits</div>
+                                        <div class="huge"><?php echo $a_data[0];?></div>
+                                        <div>Active Customers</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="vistors_view.php?type=C">
+                            <a href="customer_history.php?type=A">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -83,12 +74,12 @@ include 'header.php';
                                         <i class="fa fa-flag fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $o_data[0];?></div>
-                                        <div>Viewers Visits</div>
+                                        <div class="huge"><?php echo $d_data[0];?></div>
+                                        <div>In-Active Customers</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="vistors_view.php?type=O">
+                            <a href="customer_history.php?type=I">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

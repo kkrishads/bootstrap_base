@@ -38,7 +38,7 @@ include 'header.php';
                                 <h3 class="panel-title">Register</h3>
                             </div>
                             <div class="panel-body">
-							
+							 <label><u>Candidate Personal Informations:</u></label>
 <!-- form here -->
 <form method="post" action="new_register_submit.php" id="newregister">
 
@@ -101,12 +101,8 @@ include 'header.php';
                                 <input class="form-control" type="text" name="eduqualification"/>
                   
                             </div>
-							 <div class="form-group">
-                                <label>Technical Qualification:</label>
-                                <input class="form-control" type="text" name="techqualification"/>
-                  
-                            </div>
- 
+							
+
  
  </div>
  
@@ -248,6 +244,7 @@ include 'header.php';
                             </div>
 							
 							<div class="form-group">
+							<br/>
                                 <label>Star:</label>
                               <select class="form-control" name="complexion" >
                                     <option value="">Select Star</option>
@@ -263,31 +260,249 @@ include 'header.php';
                   
                             </div>
 							 <div class="form-group">
-                                <label>Customer ID*:</label>
-                                <input class="form-control" type="text" name="custId" required/>
+     <label>Phone/Mobile:</label>
+    <input class="form-control" type="text" name="contact" />
+   </div>
+							
+  <div class="form-group">
+                                <label>Technical Qualification:</label>
+                                <input class="form-control" type="text" name="techqualification"/>
                   
                             </div>
 							 <div class="form-group">
-                                <label>Password*:</label>
-                                <input class="form-control" type="password" name="password" required/>
+							  <label></label>
+							 
+							  <input class="form-control" type="hidden"/>
+							 </div>
+ 
+ </div>
+ 
+  	 <div class="col-lg-6">
+
+ <label><u>Parents/Guardian Details:</u></label>
+   	  <div class="form-group">
+                                <label>Father/Guardian Name:</label>
+								
+                                <input class="form-control" type="text" name="contact" />
+                  
+                            </div>
+							   
+							 <div class="form-group">
+                                <label>Father Age:</label>
+                                <input class="form-control" type="text" name="fage" />
+                  
+                            </div>
+			 <div class="form-group">
+                                <label>Father Profession:</label>
+                                <input class="form-control" type="text" name="fprofession" />
+                  
+                            </div>						
+			 <div class="form-group">
+                                <label>Father Income:</label>
+                                <input class="form-control" type="text" name="fincome" />
+                  
+                            </div>	
+		 <div class="form-group">
+                                <label>Father Contact:</label>
+                                <input class="form-control" type="text" name="fcontact" />
+                  
+                            </div>							
+   </div>
+   
+   <div class="col-lg-6">
+
+   	  <div class="form-group">
+	  <br/>
+                                <label>Mother Name:</label>
+								
+                                <input class="form-control" type="text" name="contact" />
+                  
+                            </div>
+							   
+							 <div class="form-group">
+                                <label>Mother Age:</label>
+                                <input class="form-control" type="text" name="fage" />
+                  
+                            </div>
+			 <div class="form-group">
+                                <label>Mother Profession:</label>
+                                <input class="form-control" type="text" name="fprofession" />
+                  
+                            </div>						
+			 <div class="form-group">
+                                <label>Mother Income:</label>
+                                <input class="form-control" type="text" name="fincome" />
+                  
+                            </div>	
+		 <div class="form-group">
+                                <label>Mother Contact:</label>
+                                <input class="form-control" type="text" name="fcontact" />
+                  
+                            </div>	
+							<br/>
+							
+   </div>
+ 
+ 
+ 	 <div class="col-lg-6">
+
+ <label><u>Work and InCome Details:</u></label>
+
+   	  <div class="form-group">
+                                <label>Job Type:</label>
+								
+                                 <select class="form-control" name="jobtype" >
+                                    <option value="">Select Job Type</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+
+                                </select>
+                  
+                            </div>
+							   
+							 <div class="form-group">
+                                <label>Job Description:</label>
+                                <textarea class="form-control" rows="5" cols="50" style="height:100px;" name="jobdesc"></textarea>
                   
                             </div>
 							
-							
+   </div>
  
- 
- </div>
+
+	 <div class="col-lg-6">
+<div class="form-group">
+<br/>
+                                <label>Annual Income:</label>
+                                <input class="form-control" type="text" name="fname"/>
+                  
+                            </div>
+   	 
+	  <div class="form-group">
+                                <label>Office Address:</label>
+                                <textarea class="form-control" rows="5" cols="50" style="height:100px;" name="officeaddr"></textarea>
+                  
+                            </div>						
+   </div>
+   
+
 
   <div class="col-lg-12">
-   <!-- Siblings HERE-->
+  
+   <label><u>Siblings Details:</u></label>
+ <table class="table table-bordered table-hover table-striped">
+  <thead>
+ <tr>
+ <th>
+ Sibling
+ </th>
+ <th>
+ Name</th>
+ <th>Age</th>
+ <th>Profession</th>
+ <th>InCome</th>
+ <th>Native</th>
+ </tr>
+  </thead>
+   <tbody>
+ <tr>
+  <td>
+  <select class="form-control" name="sibling[]" >
+                                    <option value="">Select Sibling</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+
+                                </select>
+   </td>
+ <td>
+   <input class="form-control" type="text" name="name[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="age[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="prof[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="income[]"/>
+   </td>
+    <td>
+  <select class="form-control" name="native[]" >
+                                    <option value="">Select Marital Status</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+
+                                </select>
+   </td>
+   </tr>
+   <tr>
+  <td>
+  <select class="form-control" name="sibling[]" >
+                                    <option value="">Select Sibling</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+
+                                </select>
+   </td>
+ <td>
+   <input class="form-control" type="text" name="name[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="age[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="prof[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="income[]"/>
+   </td>
+    <td>
+  <select class="form-control" name="native[]" >
+                                    <option value="">Select Marital Status</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+
+                                </select>
+   </td>
+   </tr>
+   
+    <tr>
+  <td>
+  <select class="form-control" name="sibling[]" >
+                                    <option value="">Select Sibling</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+
+                                </select>
+   </td>
+ <td>
+   <input class="form-control" type="text" name="name[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="age[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="prof[]"/>
+   </td>
+    <td>
+   <input class="form-control" type="text" name="income[]"/>
+   </td>
+    <td>
+  <select class="form-control" name="native[]" >
+                                    <option value="">Select Marital Status</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+
+                                </select>
+   </td>
+   </tr>
+   </tbody>
+  
+ </table>
   </div>
 
 
    <div class="col-lg-6">
-   <div class="form-group">
-     <label>Guardian Name:</label>
-    <input class="form-control" type="text" name="guardian" />
-   </div>
+ <label><u>Other Property Details:</u></label>
    	<div class="form-group">
                                 <label>Own House:</label>
                               <select class="form-control" name="complexion" >
@@ -302,10 +517,7 @@ include 'header.php';
    </div>
    
       <div class="col-lg-6">
-      <div class="form-group">
-     <label>Relation Ship:</label>
-    <input class="form-control" type="text" name="relationship" />
-   </div>
+<br/>
       <div class="form-group">
      <label>Place:</label>
     <input class="form-control" type="text" name="place" />
@@ -339,10 +551,7 @@ include 'header.php';
    
    </div>
    <div class="col-lg-6">
- <div class="form-group">
-     <label>Phone/Mobile:</label>
-    <input class="form-control" type="text" name="contact" />
-   </div>
+
    <div class="form-group">
                                 <label>Display Status:</label>
                               <select class="form-control" name="complexion" >

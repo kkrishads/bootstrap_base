@@ -1,13 +1,11 @@
 <?php
-session_start();
-$_SESSION['VisitType']="O";
-
+error_reporting(0);
 //For more Info: Please visit: http://www.discussdesk.com/bootstrap-datatable-with-add-edit-remove-option-in-php-mysql-ajax.htm
 
 	// VARIABLES
-	$aColumns = array('cust_id', 'visit_date', 'counts', 'user_ip');
+	$aColumns = array('CATEID', 'CATENAME', 'CATEDOR', 'CATEDORENEW', 'CATEMOB','CATEIMG1');
 	$sIndexColumn = "Id";
-	$sTable = "visitor_counts";
+	$sTable = "cadidate_list";
 	$gaSql['user'] = "root";
 	$gaSql['password'] = "";
 	$gaSql['db'] = "smaple_example";
@@ -69,14 +67,14 @@ $_SESSION['VisitType']="O";
 		dbinit($gaSql);
 
 		// REMOVE DATA
-		@mysql_query(" DELETE FROM $sTable WHERE id = " . intval($_GET['remove']));
+		@mysql_query(" DELETE FROM $sTable WHERE CATEID = " . intval($_GET['remove']));
 	}
 
 
 	// AJAX FROM JQUERY
 	if ( isset($_GET['ajax']) ) {
 		dbinit($gaSql);
-		$type=$_GET['ajax'];
+
 		// QUERY LIMIT
 		$sLimit = "";
 		if ( isset($_GET['iDisplayStart']) && $_GET['iDisplayLength'] != '-1' ) {
@@ -97,36 +95,22 @@ $_SESSION['VisitType']="O";
 		}
 
 		// QUERY SEARCH
-		$sWhere = "";
-		
-		if($type=="C") {
-			$sWhere = "WHERE ( ";
-			$sWhere .= ' cust_id != "O" )';
-			} else if($type=="O") {
-				$sWhere = "WHERE ( ";
-				$sWhere .= ' cust_id = "O" )';
-			} else {
-				
-			}
-		if ( isset($_GET['sSearch']) && $_GET['sSearch'] != "" ) {
 
-		/*$sWhere = "WHERE ( ";
-	
-			if($_SESSION['VisitType']=="C") {
-			$sWhere .= ' cust_id != "O" ';
-			} else {
-				$sWhere .= ' cust_id = "O" ';
-			}*/
+			$sWhere = "";
+		$sWhere = "WHERE ( ";
+				$sWhere .= ' CATEDORENEW <= DATE_ADD(CURDATE(), INTERVAL 7 DAY) ';
+
+		if ( isset($_GET['sSearch']) && $_GET['sSearch'] != "" ) {
+			$sWhere = "WHERE (";
 			for ( $i = 0; $i < count($aColumns); $i++ ) {
 				if ( isset($_GET['bSearchable_' . $i]) && $_GET['bSearchable_' . $i] == "true" ) {
 					$sWhere .= $aColumns[$i] . " LIKE '%" . mysql_real_escape_string($_GET['sSearch']) . "%' OR ";
 				}
 			}
 			//$sWhere = substr_replace($sWhere, "", -3);
-
-		}
-
 			
+		}
+$sWhere .= ')';
 		// BUILD QUERY
 		for ( $i = 0; $i < count($aColumns); $i++ ) {
 			if ( isset($_GET['bSearchable_' . $i]) && $_GET['bSearchable_' . $i] == "true" && $_GET['sSearch_' . $i] != '' ) {
@@ -135,12 +119,9 @@ $_SESSION['VisitType']="O";
 				$sWhere .= $aColumns[$i] . " LIKE '%" . mysql_real_escape_string($_GET['sSearch_' . $i]) . "%' ";
 			}
 		}
-//echo $sWhere;
-	
+
 		// FETCH
-
-			$sQuery = " SELECT SQL_CALC_FOUND_ROWS " . str_replace(" , ", " ", implode(", ", $aColumns)) . " FROM $sTable $sWhere $sOrder $sLimit ";
-
+		$sQuery = " SELECT SQL_CALC_FOUND_ROWS " . str_replace(" , ", " ", implode(", ", $aColumns)) . " FROM $sTable $sWhere $sOrder $sLimit ";
 		$rResult = mysql_query($sQuery, $gaSql['link']) or fatal_error('MySQL Error: ' . mysql_errno());
 		$sQuery = " SELECT FOUND_ROWS() ";
 		$rResultFilterTotal = mysql_query($sQuery, $gaSql['link']) or fatal_error('MySQL Error: ' . mysql_errno());
@@ -156,15 +137,14 @@ $_SESSION['VisitType']="O";
 				if ( $aColumns[$i] == "version" ) $row[] = ( $aRow[$aColumns[$i]] == "0" ) ? '-' : $aRow[$aColumns[$i]];
 				else if ( $aColumns[$i] != ' ' ) $row[] = $aRow[$aColumns[$i]];
 			}
-			$output['aaData'][] = $row;
+			//$output['aaData'][] = array_merge($row, array('<a data-id="row-' . $row[0] . '" href="javascript:editRow(' . $row[0] . ');" class="btn btn-md btn-success">edit</a>&nbsp;<a href="javascript:removeRow(' . $row[0] . ');" class="btn btn-default btn-md" style="background-color: #c83a2a;border-color: #b33426; color: #ffffff;">remove</a>'));
+		$output['aaData'][] = array_merge($row, array('<a data-id="row-' . $row[0] . '" href="edit_registration.php?custId=' . $row[0] . '" class="btn btn-md btn-primary">Renewal Now</a>&nbsp;<a href="javascript:removeRow(' . $row[0] . ');" class="btn btn-default btn-md" style="background-color: #c83a2a;border-color: #b33426; color: #ffffff;">Notify</a>'));
+		
 		}
-		if($output!=null) {
+
 		// RETURN IN JSON
 		die(json_encode($output));
-		} else {
-			$tmparray=array();
-			die(json_encode($tmparray));
-		}
+		
 	}
 
 ?>
